@@ -32,8 +32,9 @@ class Hero ():
     def __init__(self):
  
         Hero.__hero_image.set_clip(pygame.Rect(0, 0, 64, 128))
-        self.rect = self.image.get_rect()
         self.image = self.__hero_image.subsurface(self.__hero_image.get_clip())
+        self.rect = self.image.get_rect()
+        
 
     def render(self, frame_set):
         self.__frame += 1
