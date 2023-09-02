@@ -16,10 +16,11 @@ class Game():
     player = Hero()
 
     def __init__(self) -> None:
+
         pygame.init()
         self.screen = pygame.display.set_mode((Game.screen_weight,Game.screen_height))
         pygame.display.set_caption(Game.game_caption)
-        
+        pygame.display.set_icon(Game.icon)
         self.quit = False
         pygame.mixer.music.play(-1)
         self.fps = 18
@@ -30,18 +31,18 @@ class Game():
         while self.quit == False:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    quit = True
+                    self.quit = True
+            self.__render()
             self.player.handle_event(event)
-            self.screen.blit(Game.background,(0,0))
-            self.screen.blit(Game.player.image, Game.player.rect)
-            pygame.display.flip()
-            pygame.display.set_icon(Game.icon)
             self.clock.tick(self.fps)
-        self.quit_game()
+        self.__quit_game()
+    
+    def __render(self):
+        print('Hello')
+        self.screen.blit(Game.background,(0,0))
+        self.screen.blit(Game.player.image, Game.player.rect)
+        pygame.display.flip()
 
-    def quit_game(self):
-                
+    def __quit_game(self):
+
         pygame.quit()
-
-game = Game()
-game.run()
