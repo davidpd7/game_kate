@@ -1,5 +1,5 @@
 import pygame
-import player
+from player import Hero
 
 
 pygame.init()
@@ -10,7 +10,7 @@ screen_height = 480
 screen = pygame.display.set_mode((screen_weight,screen_height))
 pygame.display.set_caption("Actividad")
 clock = pygame.time.Clock()
-player = player.Hero((screen_weight/2, screen_height/1.35))
+player = Hero()
 icon = pygame.image.load('images/icono.png')
 background = pygame.image.load('images/fondo.png')
 quit = False
