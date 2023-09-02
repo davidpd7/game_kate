@@ -1,16 +1,10 @@
 import pygame
+import os
+
 
 class Hero ():
 
-    def __init__(self):
-        
-        self.__hero_image = pygame.image.load('images/kate.png')
-        self.__hero_image.set_clip(pygame.Rect(0, 0, 64, 128))
-        self.image = self.__hero_image.subsurface(self.__hero_image.get_clip())
-        self.rect = self.image.get_rect()
-        
-        self.__frame = 0
-        self.__right_states = { 0: (0, 0, 64, 128), 
+    __right_states = { 0: (0, 0, 64, 128), 
                                 1: (64, 0, 64, 128), 
                                 2: (128, 0, 64, 128), 
                                 3: (192, 0, 64, 128), 
@@ -20,7 +14,7 @@ class Hero ():
                                 7: (448, 0, 64, 128), 
                                 8: (512, 0, 64, 128), 
                                 9: (576, 0, 64, 128) }
-        self.__left_states = {  0: (0, 128, 64, 128), 
+    __left_states = {  0: (0, 128, 64, 128), 
                                 1: (64, 128, 64, 128), 
                                 2: (128, 128, 64, 128), 
                                 3: (192, 128, 64, 128), 
@@ -30,7 +24,15 @@ class Hero ():
                                 7: (448, 128, 64, 128), 
                                 8: (512, 128, 64, 128), 
                                 9: (576, 128, 64, 128) }
-        self.__speed = 6
+    __frame = 0
+    __speed = 6
+    __hero_image_path = ['images','kate.png']
+    __hero_image = pygame.image.load(os.path.join(*__hero_image_path))
+
+    def __init__(self):
+ 
+        self.__hero_image.set_clip(pygame.Rect(0, 0, 64, 128))
+        self.image = self.__hero_image.subsurface(self.__hero_image.get_clip())
 
 
     def render(self, frame_set):
