@@ -34,7 +34,6 @@ class Hero ():
         self.__hero_image.set_clip(pygame.Rect(0, 0, 64, 128))
         self.image = self.__hero_image.subsurface(self.__hero_image.get_clip())
 
-
     def render(self, frame_set):
         self.__frame += 1
         if self.__frame > (len(frame_set)- 1):          
