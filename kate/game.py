@@ -25,7 +25,7 @@ while quit == False:
             quit = True
     player.handle_event(event)
     screen.blit(background,(0,0))
-    screen.blit(player.__hero_image, player.rect)
+    screen.blit(player.image, player.rect)
     pygame.display.flip()
     pygame.display.set_icon(icon)
     clock.tick(fps)
