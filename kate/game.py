@@ -14,21 +14,13 @@ class Game():
     __music_path = ['music', 'ambiente.ogg']
     player = Hero()
 
-    def __init__(self) -> None:
+    def __init__(self):
 
         pygame.init()
-<<<<<<< Updated upstream
-        self.screen = pygame.display.set_mode((Game.screen_weight,Game.screen_height))
-        pygame.display.set_caption(Game.game_caption)
-        pygame.display.set_icon(Game.icon)
-=======
         self.screen = pygame.display.set_mode((Game.__screen_weight,Game.__screen_height))
-        pygame.display.set_caption(Game.__game_caption)
-        pygame.mixer.music.load (os.path.join(*Game.__music_path))
-        pygame.display.set_icon(Game.__icon)
->>>>>>> Stashed changes
-        self.quit = False
+        pygame.mixer.music.load(os.path.join(*Game.__music_path))
         pygame.mixer.music.play(-1)
+        self.quit = False
         self.fps = 18
         self.clock = pygame.time.Clock()
 
@@ -38,32 +30,23 @@ class Game():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.quit = True
-<<<<<<< Updated upstream
             self.__render()
-=======
-            self.render()
->>>>>>> Stashed changes
+            self.display()
+            
             self.player.handle_event(event)
             self.clock.tick(self.fps)
         self.__quit_game()
     
-    def __render(self):
-        print('Hello')
-        self.screen.blit(Game.background,(0,0))
-        self.screen.blit(Game.player.image, Game.player.rect)
-        pygame.display.flip()
+    def display(self):
+        pygame.display.set_caption(Game.__game_caption)
+        pygame.display.set_icon(Game.__icon)
 
-<<<<<<< Updated upstream
-    def __quit_game(self):
-=======
-    def render(self):
+    def __render(self):
         self.screen.blit(Game.__background,(0,0))
         self.screen.blit(Game.player.image, Game.player.rect)
+        print(Game.player.rect)
         pygame.display.flip()
 
-    def quit_game(self):
+    def __quit_game(self):
                 
-        pygame.quit()
->>>>>>> Stashed changes
-
         pygame.quit()
