@@ -5,25 +5,25 @@ import os
 class Hero ():
 
     __right_states = { 0: (0, 0, 64, 128), 
-                                1: (64, 0, 64, 128), 
-                                2: (128, 0, 64, 128), 
-                                3: (192, 0, 64, 128), 
-                                4: (256, 0, 64, 128), 
-                                5: (320, 0, 64, 128), 
-                                6: (384, 0, 64, 128), 
-                                7: (448, 0, 64, 128), 
-                                8: (512, 0, 64, 128), 
-                                9: (576, 0, 64, 128) }
+                       1: (64, 0, 64, 128), 
+                       2: (128, 0, 64, 128), 
+                       3: (192, 0, 64, 128), 
+                       4: (256, 0, 64, 128), 
+                       5: (320, 0, 64, 128), 
+                       6: (384, 0, 64, 128), 
+                       7: (448, 0, 64, 128), 
+                       8: (512, 0, 64, 128), 
+                       9: (576, 0, 64, 128) }
     __left_states = {  0: (0, 128, 64, 128), 
-                                1: (64, 128, 64, 128), 
-                                2: (128, 128, 64, 128), 
-                                3: (192, 128, 64, 128), 
-                                4: (256, 128, 64, 128), 
-                                5: (320, 128, 64, 128), 
-                                6: (384, 128, 64, 128), 
-                                7: (448, 128, 64, 128), 
-                                8: (512, 128, 64, 128), 
-                                9: (576, 128, 64, 128) }
+                        1: (64, 128, 64, 128), 
+                        2: (128, 128, 64, 128), 
+                        3: (192, 128, 64, 128), 
+                        4: (256, 128, 64, 128), 
+                        5: (320, 128, 64, 128), 
+                        6: (384, 128, 64, 128), 
+                        7: (448, 128, 64, 128), 
+                        8: (512, 128, 64, 128), 
+                        9: (576, 128, 64, 128) }
     __frame = 0
     __speed = 6
     __hero_image_path = ['images','kate.png']
@@ -31,10 +31,9 @@ class Hero ():
 
     def __init__(self):
  
-        Hero.__hero_image.set_clip(pygame.Rect(0, 0, 64, 128))
+        Hero.__hero_image.set_clip(pygame.Rect(0, 0, 0, 0))
         self.image = self.__hero_image.subsurface(self.__hero_image.get_clip())
         self.rect = self.image.get_rect()
-        
 
     def render(self, frame_set):
         self.__frame += 1
@@ -45,7 +44,6 @@ class Hero ():
     def render_rect(self, clipped_rect):
         if type(clipped_rect) is dict:
             self.__hero_image.set_clip(pygame.Rect(self.render(clipped_rect)))
-
         else:
             self.__hero_image.set_clip(pygame.Rect(clipped_rect))
             
@@ -53,18 +51,17 @@ class Hero ():
 
     def update(self, direction):
         if direction == 'left':
-            self.render_rect(self.__left_states)
-            self.rect.x -= self.__speed
+            self.render_rect(Hero.__left_states)
+            self.rect.x -= Hero.__speed
         if direction == 'right':
-            self.render_rect(self.__right_states)
-            self.rect.x += self.__speed
-        
+            self.render_rect(Hero.__right_states)
+            self.rect.x += Hero.__speed
         if direction == 'stand_left':
-            self.render_rect(self.__left_states[0])
+            self.render_rect(Hero.__left_states[0])
         if direction == 'stand_right':
-            self.render_rect(self.__right_states[0])
+            self.render_rect(Hero.__right_states[0])
       
-        self.image = self.__hero_image.subsurface(self.__hero_image.get_clip())
+        self.image = self.__hero_image.subsurface(Hero.__hero_image.get_clip())
 
     def handle_event(self, event):
         if event.type == pygame.QUIT:
